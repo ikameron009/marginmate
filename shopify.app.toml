@@ -1,0 +1,30 @@
+name = "MarginMate"
+client_id = ""  # Fill in after creating app in Partners Dashboard
+application_url = "https://marginmate.vercel.app"
+embedded = false
+
+[access_scopes]
+scopes = "read_products,read_orders"
+
+[auth]
+redirect_urls = [
+  "https://marginmate.vercel.app/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2026-01"
+
+  [[webhooks.subscriptions]]
+  topics = ["customers/data_request"]
+  uri = "/api/webhooks/gdpr"
+
+  [[webhooks.subscriptions]]
+  topics = ["customers/redact"]
+  uri = "/api/webhooks/gdpr"
+
+  [[webhooks.subscriptions]]
+  topics = ["shop/redact"]
+  uri = "/api/webhooks/gdpr"
+
+[pos]
+embedded = false
